@@ -78,27 +78,27 @@ This setup simulates a simplified 3-tier architecture for learning and documenta
 
 ## Instances 📸
 
-![Instances](screenshots/instances.png)
+![Instances](Screenshots/instances.png)
 
 ## Security Groups 📸
 
-![Security-Groups](screenshots/sec-group.png)
+![Security-Groups](Screenshots/sec-group.png)
 
 ## Pings 📸
 
-![Pings](screenshots/ping.png)
+![Pings](Screenshots/ping.png)
 
 ## Successful Connection 📸
 
-![Success](screenshots/success.png)
+![Success](Screenshots/success.png)
 
 ## ERROR 📸
 
-![Error](screenshots/error.png)
+![Error](Screenshots/error.png)
 
 ## Permission Denied 📸 
 
-![Permission Denied](screenshots/permission-denied.png)
+![Permission Denied](Screenshots/permission-denied.png)
 
 ## Challenges Faced
 
