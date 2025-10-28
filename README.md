@@ -35,12 +35,7 @@ This project is intended **for educational purposes only**. Do not use real IP a
   - Outbound: all (default)
 - Private/App SG:
   - Inbound: SSH (22) **from Bastion SG** (reference by SG ID)
-  - Inbound: App port (e.g., 80) **from ALB SG** only
   - Outbound: all (or restricted to NAT + endpoints)
-- ALB SG:
-  - Inbound: 80/443 from internet (or restricted CIDR)
-  - Outbound: to Private/App SG on the target port
-
 ---
 
 ## Key Pair
