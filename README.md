@@ -1,4 +1,4 @@
-# AWS 3-Tier Architecture Example
+# AWS 3-Tier Architecture
 
 This project demonstrates a simple **2-instance 3-tier architecture** on AWS using a **public NAT instance** and a **private instance** in separate subnets. The setup is designed for learning purposes and documentation.
 
