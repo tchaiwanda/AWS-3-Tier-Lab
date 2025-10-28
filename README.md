@@ -29,19 +29,17 @@ This project is intended **for educational purposes only**. Do not use real IP a
 
 ## Security Groups
 
-### NAT Security Group
-
-- **Inbound Rules**:
-  - SSH (Port 22) from your Windows 11 public IP
-- **Outbound Rules**:
-  - All traffic (default)
-
-### Private Security Group
-
-- **Inbound Rules**:
-  - SSH (Port 22) from NAT instance private IP or NAT SG
-- **Outbound Rules**:
-  - All traffic (default)
+## Security Groups (least privilege)
+- Bastion SG:
+  - Inbound: SSH (22) from your client IP only
+  - Outbound: all (default)
+- Private/App SG:
+  - Inbound: SSH (22) **from Bastion SG** (reference by SG ID)
+  - Inbound: App port (e.g., 80) **from ALB SG** only
+  - Outbound: all (or restricted to NAT + endpoints)
+- ALB SG:
+  - Inbound: 80/443 from internet (or restricted CIDR)
+  - Outbound: to Private/App SG on the target port
 
 ---
 
@@ -51,22 +49,24 @@ This project is intended **for educational purposes only**. Do not use real IP a
 - Used for both NAT and private instances
 - Stored locally on Windows and copied to NAT for private SSH access
 
-**Copy key to NAT instance:**
+### Copy key to bastion
+# On your laptop (Windows PowerShell)
+scp -i "C:\Users\<you>\Downloads\<your-key-pair>.pem" `
+    "C:\Users\<you>\Downloads\<your-key-pair>.pem" `
+    ec2-user@<BASTION_PUBLIC_IP>:~/<your-key-pair>.pem
 
-```powershell
-scp -i "C:\Users\<YourUser>\Downloads\<your-key-pair>.pem.pem" "C:\Users\<YourUser>\Downloads\<your-key-pair>.pem" ec2-user@<NAT_Public_IP>:/home/ec2-user/
-```
-**SSH Workflow**
+### SSH to bastion
+ssh -i "C:\Users\<you>\Downloads\<your-key-pair>.pem" ec2-user@<BASTION_PUBLIC_IP>
 
-Step 1: Windows → NAT Instance
- ``` ssh -i "C:\Users\<YourUser>\Downloads\<your-key-pair>.pem" ec2-user@<NAT_Public_IP> ```
+### On the bastion (Linux)
+chmod 400 ~/<your-key-pair>.pem
+ssh -i ~/<your-key-pair>.pem ec2-user@<PRIVATE_INSTANCE_PRIVATE_IP>
 
-Step 2: Set Key Permissions on NAT:
-
-``` chmod 400 "<your-key-pair>.pem>" ```
-
-Step 3: NAT → Private Instance
-``` ssh -i ./<your-key-pair>.pem> ec2-user@10.0.2.x ```
+## Optional: Connect with AWS Systems Manager (no SSH, no bastion)
+1) Attach IAM role `AmazonSSMManagedInstanceCore` to the instance(s).
+2) Ensure outbound HTTPS (443) to SSM endpoints (via NAT Gateway or VPC endpoints).
+3) From your laptop (with AWS CLI configured):
+aws ssm start-session --target <INSTANCE_ID>
 
 ## Notes
 
