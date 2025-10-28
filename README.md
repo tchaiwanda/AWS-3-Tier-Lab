@@ -86,7 +86,7 @@ This setup simulates a simplified 3-tier architecture for learning and documenta
 
 ## Pings 📸
 
-![Pings](screenshots/sec-group.png)
+![Pings](screenshots/ping.png)
 
 ## Successful Connection 📸
 
