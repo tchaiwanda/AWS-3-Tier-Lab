@@ -115,10 +115,10 @@ This setup simulates a simplified 3-tier architecture for learning and documenta
 - Using placeholders for sensitive data when documenting cloud projects publicly.
 
 
-### Author
+## 👩🏽‍💻 Author
 **Tchai Chambers**  
-[LinkedIn](https://linkedin.com/in/tchaiwanda) | [GitHub](https://github.com/tchaiwanda)
-
+Cloud & Security Enthusiast | AWS | Azure | Terraform | Cybersecurity  
+📫 [LinkedIn](#) | [GitHub](https://github.com/tchaiwanda)
 
 ## 🏷️ Tags
 
